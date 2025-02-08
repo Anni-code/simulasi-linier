@@ -1,0 +1,4 @@
+git add requirements.txt
+git commit -m "Menambahkan file requirements.txt"
+git push origin main
+ 
