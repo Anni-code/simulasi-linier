@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import ipywidgets as widgets
-from IPython.display import display
+import streamlit as st
 
 def plot_triangle_and_lines(y, m):
     P = np.array([2, 4])
@@ -26,15 +25,11 @@ def plot_triangle_and_lines(y, m):
     ax.grid(True, linestyle='--', linewidth=0.5)
     ax.legend()
     ax.set_title(f"Simulasi dengan y={y}, m={m}")
-    plt.show()
+    st.pyplot(fig)
 
-y_slider = widgets.FloatSlider(min=-4, max=16, step=0.5, value=8, description='y:')
-m_slider = widgets.FloatSlider(min=-2, max=3, step=0.1, value=1, description='m:')
-button = widgets.Button(description="Tampilkan Simulasi")
+# Streamlit UI
+y = st.slider("Pilih nilai y", min_value=-4.0, max_value=16.0, step=0.5, value=8.0)
+m = st.slider("Pilih nilai m", min_value=-2.0, max_value=3.0, step=0.1, value=1.0)
 
-def on_button_click(b):
-    plot_triangle_and_lines(y_slider.value, m_slider.value)
-
-button.on_click(on_button_click)
-
-display(y_slider, m_slider, button)
+if st.button("Tampilkan Simulasi"):
+    plot_triangle_and_lines(y, m)
